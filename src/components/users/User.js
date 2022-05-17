@@ -1,12 +1,20 @@
 import React, { Component } from "react";
+// import { useLocation } from "react-router-dom";
 
 export class User extends Component {
+	// getParams = () => {
+	// 	const { login } = useParams();
+	// 	return login;
+	// };
 	componentDidMount() {
-		console.log(this.props);
-		this.props.getUser("brad");
+		const queryParams = new URLSearchParams(window.location.search);
+		console.log(queryParams.get("username"));
+		// const location = useLocation();
+		this.props.getUser(queryParams.get("username"));
 	}
-
 	render() {
+		// this.props.getUser(this.getParams);
+		// console.log(this.props);
 		const {
 			name,
 			avatar_url,

@@ -33,6 +33,7 @@ class App extends Component {
 		this.setState({ user: res.data, loading: false });
 	};
 
+	params = () => {};
 	clearUsers = () => {
 		this.setState({ users: [], loading: false });
 	};
@@ -82,8 +83,7 @@ class App extends Component {
 							<Route exact path='/about' element={<About />} />
 							<Route
 								exact
-								path='/user/:login'
-								key={"qwe"}
+								path='/user'
 								element={
 									<User
 										getUser={this.getUser}

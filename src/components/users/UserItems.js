@@ -13,7 +13,10 @@ const UserItems = (props) => {
 				style={{ width: "60px" }}
 			/>
 			<h3>{login}</h3>
-			<Link to={`/user/${login}`} className='btn btn-dark btn-sm my-1'>
+			<Link
+				to={`/user/?username=${login}`}
+				className='btn btn-dark btn-sm my-1'
+			>
 				More
 			</Link>
 		</div>
