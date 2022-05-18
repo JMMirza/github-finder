@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Repos } from "../repos/Repos";
 import { Spinner } from "../layouts/spinner";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -14,12 +15,15 @@ export class User extends Component {
 		console.log(queryParams.get("username"));
 		// const location = useLocation();
 		this.props.getUser(queryParams.get("username"));
+		this.props.getUserRepos(queryParams.get("username"));
 	}
 
 	static propTypes = {
 		loading: PropTypes.bool,
+		repo: PropTypes.array.isRequired,
 		user: PropTypes.object.isRequired,
 		getUser: PropTypes.func.isRequired,
+		getUserRepos: PropTypes.func.isRequired,
 	};
 	render() {
 		const {
@@ -38,7 +42,7 @@ export class User extends Component {
 			hireable,
 		} = this.props.user;
 
-		const { loading } = this.props;
+		const { loading, repos } = this.props;
 		if (loading) return <Spinner />;
 		return (
 			<Fragment>
@@ -112,6 +116,7 @@ export class User extends Component {
 					<div className='badge badge-light'>Public Repos: {public_repos}</div>
 					<div className='badge badge-dark'>Public Gist: {public_gists}</div>
 				</div>
+				<Repos repos={repos} />
 			</Fragment>
 		);
 	}
